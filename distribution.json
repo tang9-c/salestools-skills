@@ -1,5 +1,5 @@
 {
-  "source_commit": "f20d26d65d1dfc09639a8dc9619e986c67e3d05a",
+  "source_commit": "67ca7fa65f92016cb35928b96c6e7f1b618b3f62",
   "skills": [
     "salestools-customer-assessment",
     "salestools-contact-management"
@@ -10,12 +10,12 @@
     "skills/salestools-contact-management/references/company-context.md": "6cfa62414340a2ad6a3707f0fa39a383cda4ec9b1871aac764aaaacb92d233e1",
     "skills/salestools-contact-management/references/import-workflow.md": "a64f7966bafc75baf56047773ee43db6912a3847bfd338b93a737380aac4fcfa",
     "skills/salestools-contact-management/references/library-search.md": "5ecc9c60e4f5e710be9c19997cfc39dcf60bc055637cf2cae5c278f2048df02e",
-    "skills/salestools-contact-management/references/mcp-execution.md": "76934a2f560ddef71eefd7508380bb20a118c4a39362e8d1ca31f769699c0464",
+    "skills/salestools-contact-management/references/mcp-execution.md": "7f163a94049a9f4b73438d679e42453b1a788da7b84e6512fbcf75cb746cf9fb",
     "skills/salestools-contact-management/references/record-maintenance.md": "629552c0634e547c5b96289be0af46ce23f463cb17b5833dfae6ce8b208ce903",
     "skills/salestools-contact-management/references/web-discovery.md": "103b9dc92fdd9e93be44a618089005bf3de6fadf6627da8186a8843111a09a71",
     "skills/salestools-contact-management/references/zoho-discovery.md": "64be5bfd9a6ea5f7f729fefe4b97be1b94911bf216a25a284db1aa87da89b60c",
     "skills/salestools-contact-management/scripts/requirements.txt": "117bb7857e2106917057761be56b51e26df4b9c0e3ebdbcf48a992e94534c6ac",
-    "skills/salestools-contact-management/scripts/validate_mcp_call.py": "42d31e0aa074383db13086bace010d1aaf61f13e415d536a638b6888767ce9a5",
+    "skills/salestools-contact-management/scripts/validate_mcp_call.py": "5b704865318a271376c8726cec3c0f6dcb673dcb0e967dc0f670288146a53506",
     "skills/salestools-customer-assessment/SKILL.md": "8713a959b7e66b704426c4e41379f1d433019e25fa5d2f170982db79b7c88bf3",
     "skills/salestools-customer-assessment/references/assessment-reports.md": "89d0f4d957a0c1ae28b81583b1004519c37775f46528caf2d6ecdbeb0e32522d",
     "skills/salestools-customer-assessment/references/company-comparisons.md": "c5785bc6012968d5617dbee23c8befbaf8a40f7dc4db6863bf2737054fdc1288",

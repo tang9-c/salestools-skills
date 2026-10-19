@@ -22,6 +22,7 @@ ID_KEYS = {
 for _key in ('dossier_id', 'version_id', 'run_id', 'brief_id', 'comparison_id',
              'assessment_id', 'import_id', 'claim_id', 'relation_id', 'file_id', 'credit_code'):
     ID_KEYS[_key] = {_key}
+ID_KEYS['run_id'].add('research_run_id')
 
 
 class Invalid(Exception):

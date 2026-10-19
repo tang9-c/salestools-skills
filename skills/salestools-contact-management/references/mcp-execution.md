@@ -50,6 +50,8 @@ request/result 输入结构（以下 ID 为示例占位，不得原样调用）�
 
 首次接收用户提供的 ID 时先用宿主在线声明回读核实，将真实返回放进 history，再使用脚本衔接；此初次定位不能声称已有历史来源验证。写操作仍需各自授权、版本和幂等约束，脚本不替代服务端业务校验。参数里出现未记录 ID 会返回 ID_NOT_FROM_HISTORY；不要用 CRM record_id 填图谱 entity_id。继续/刷新研究还要求历史中有未指定 version_id 的最新档案读取，以核对 base_version_id。
 
+拜访返回的 `research_run_id` 是其自动补研任务标识，可直接作为 `get_company_research_status.run_id`；脚本认可这个来源别名。仍须来自本次成功回包的真实 history，不能自行填造或拿 `brief_id` 代替，无需为了别名再绕查版本目录。
+
 CRM 候选必须经用户选定。提交 zoho_account_records 时，在校验输入顶层另附 `confirmations:{"crm_accounts":[{"connection_id":"实际连接ID","account_id":"用户选定的实际客户ID"}]}`；它是本轮人工选择的执行记录，不是 MCP 参数，不放进 call.arguments。脚本同时核对该配对确实出现在真实历史和选择记录中；只有候选列表不能通过。复用已确认选择时保留此记录，不重复打扰用户。此记录仍由执行者如实提供，脚本不能替用户作出选择或鉴定聊天授权。
 
 handoff 阶段不需要 tools/call，但需要同一份 history 和明确目标：

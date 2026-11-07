@@ -54,4 +54,5 @@ base_version_id 必须是**档案全局最新版本**。例如最新 V9 研究 C
 - get/list/status/evidence 均只读，不触发模型、来源重查或新版本。已有历史结果不因重读自动变新；新研究也不覆盖旧版本。
 - RESEARCH_ALREADY_RUNNING 返回 run_id 时跟踪共享任务，不换 operation_id 重复创建；RESEARCH_ALREADY_EXISTS 时读取已有档案。RESEARCH_VERSION_CONFLICT 时读最新版本重新核对；若仍需继续，按更新后的完整参数建立新 operation_id。
 - 失败或取消保留已有成果；无任何版本的空档案不能用 continue。用户明确重试首次研究时仍用 initial 和新 operation_id；原样重放旧 ID 只会返回旧任务。队列/用户上限等待后查询，不循环提交。RESEARCH_VERSION_UNSUPPORTED 时说明不兼容，不自行修改模板或存储绕过校验。
-- 用户要求取消时用 cancel_company_research({run_id})，说明取消共享研究会影响依赖它的团队工作；没有明确取消请求不替用户取消。持续研究不是后台订阅，新增定时任务需用户另行提出。
+- 其他已认证用户可用 `get_company_research_status({run_id})` 读取常规状态，也可读取已发布的研究版本。`response_version:2` 的任务状态和 `get_company_research_draft` 草稿读取限任务创建者。线上验收确认了常规状态和成果可跨身份读取，以及草稿读取和取消被拒绝。v2 状态的权限限制来自服务端实现，该次线上验收未覆盖。
+- 只有任务创建者明确要求取消时，才用 `cancel_company_research({run_id})`，并说明取消会影响依赖该研究的团队工作。持续研究按需发起，新增定时任务需用户另行提出。

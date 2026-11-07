@@ -19,6 +19,7 @@ description: Find contacts in the Salestools library, Zoho CRM or public web; br
 | 查公开网页联系人 | `discover_contacts(source:"web")`；明确要两源才用 `all`。 | 调用或续页前读 [网页发现与快照分页](references/web-discovery.md)。 |
 | 导入简历或名片 | `open_contact_upload`，在 App 选文件、预览和确认。 | 操作前读 [导入与恢复](references/import-workflow.md)。 |
 | 从文字提取/保存联系人 | `import_contacts_text`，复用预览与确认。 | 同上；不需要上传或 Docling。 |
+| 从新闻或纪要提取/保存多人 | 按人摘录原文，逐人调用 `import_contacts_text`，汇总预览和结果。 | 先读[多人文字导入](references/import-workflow.md#多人文字导入)，逐人查重并核对公司归属。 |
 | 修改、合并、归档、恢复或审核线索 | 先 `get_contact` 核对版本，再调用对应写工具。 | 操作前读 [维护与身份核对](references/record-maintenance.md)。 |
 | 企业关联、背景或历史报告 | 现有工具的企业上下文功能。 | 读 [企业关联与历史](references/company-context.md)。 |
 | 客户开发简报、首次拜访或会前准备 | 转到企业研究 skill 的共享拜访或只读草稿场景；这里只提供所需人物与 CRM 资料。 | 读 [客户开发简报与拜访准备](../salestools-customer-assessment/references/sales-briefs.md)。 |

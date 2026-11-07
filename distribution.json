@@ -1,14 +1,14 @@
 {
-  "source_commit": "b6d5c3169e8b4216927f71aaedf3086969a53e97",
+  "source_commit": "aab0b20da8ea15305ed40dc888ece5ced2d9b437",
   "skills": [
     "salestools-customer-assessment",
     "salestools-contact-management"
   ],
   "sha256": {
     "README.md": "3bdd5181692164bfc80e17c5ea228a0ac23e935064e58d244a37d51f30979a77",
-    "skills/salestools-contact-management/SKILL.md": "90fd47f6c42eefb220dda772ce1fcba9c2d166619109010921c268b8d0c43bc3",
+    "skills/salestools-contact-management/SKILL.md": "016ec859687affef8b15be46045089413cfcf795b8f7ad4f08e8eea85860facc",
     "skills/salestools-contact-management/references/company-context.md": "6cfa62414340a2ad6a3707f0fa39a383cda4ec9b1871aac764aaaacb92d233e1",
-    "skills/salestools-contact-management/references/import-workflow.md": "e890bf2094a1b83b74d2e96eca1edf5871beb2ffc617128c52bf15816f0c84c7",
+    "skills/salestools-contact-management/references/import-workflow.md": "554ed6aa2a962a5d55e82ab232e53a9b8f8dcf31cb3cb5da0b3621ff11d8674b",
     "skills/salestools-contact-management/references/library-search.md": "901acf623d8ba1d31bdac45add74e6daf0cd0db59d591bc4b4b76c3e9177ba34",
     "skills/salestools-contact-management/references/mcp-execution.md": "7f163a94049a9f4b73438d679e42453b1a788da7b84e6512fbcf75cb746cf9fb",
     "skills/salestools-contact-management/references/record-maintenance.md": "629552c0634e547c5b96289be0af46ce23f463cb17b5833dfae6ce8b208ce903",

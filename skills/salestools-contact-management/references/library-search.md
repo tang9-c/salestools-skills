@@ -35,6 +35,7 @@
 ## 问答
 
 `ask_contacts` 用于既有直接正式关系，不用于召回未核实线索或代替新的网页研究。
-`clarify` 时用候选让用户选定，再按真实 ID 重问；`answered/insufficient/failed` 保留原义与引用。
+`clarify` 时用候选让用户选定，再按真实 ID 重问。`answered` 必须至少有一条引文，`insufficient` 表示证据不足且不带引文。`failed` 按工具返回的失败说明处理。
+同一份简历中的任职或项目参与关系可能由多段证据共同支持。引用这类关系时，保留共同证明本人、关系和对方的引文，任职还要保留支持岗位的引文。
 “现任”还须核对 `employment_status=current`、`status_as_of` 与证据。
 共享库、CRM 与网页资料分别标明来源，不将相似姓名/岗位当成身份确认。

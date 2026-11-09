@@ -10,7 +10,6 @@ READ_ONLY = {
     'get_company_research', 'get_company_research_status', 'list_company_research_versions',
     'get_company_research_evidence', 'get_company_visit', 'get_company_visit_evidence',
     'get_company_comparison', 'get_company_comparison_evidence', 'get_contact_import',
-    'get_assessment_status', 'get_assessment_report',
 }
 ID_KEYS = {
     'entity_id': {'entity_id', 'source_id', 'target_id'},
@@ -20,7 +19,7 @@ ID_KEYS = {
     'base_version_id': {'version_id'},
 }
 for _key in ('dossier_id', 'version_id', 'run_id', 'brief_id', 'comparison_id',
-             'assessment_id', 'import_id', 'claim_id', 'relation_id', 'file_id', 'credit_code'):
+             'import_id', 'claim_id', 'relation_id', 'file_id', 'credit_code'):
     ID_KEYS[_key] = {_key}
 ID_KEYS['run_id'].add('research_run_id')
 
@@ -90,7 +89,7 @@ def history_data(packet):
 
 def check_binding(call, data):
     args = call['arguments']
-    for key in ('run_id', 'brief_id', 'comparison_id', 'dossier_id', 'version_id', 'import_id', 'assessment_id'):
+    for key in ('run_id', 'brief_id', 'comparison_id', 'dossier_id', 'version_id', 'import_id'):
         if key in args and key in data and args[key] != data[key]:
             raise Invalid('RESULT_ID_MISMATCH', '$/response/' + key)
     if call['name'] == 'get_contact' and data.get('entity', {}).get('entity_id') != args.get('entity_id') and data.get('found') is not False:
@@ -123,7 +122,7 @@ def request(packet):
                     raise Invalid('ID_NOT_FROM_HISTORY', '$/call/arguments/companies/' + str(index) + '/' + key)
     if args.get('organization_id') and not any(o.get('entity_id') == args['organization_id'] and o.get('label') == 'Organization' for o in known):
         raise Invalid('ORGANIZATION_TYPE_NOT_VERIFIED')
-    if name == 'start_company_research' and args.get('mode') == 'initial':
+    if name == 'get_company_key_people' or name == 'start_company_research' and args.get('mode') == 'initial':
         if not any(o.get('credit_code') == args.get('credit_code') and o.get('legal_name') == args.get('legal_name') for o in known):
             raise Invalid('COMPANY_NAME_CODE_MISMATCH')
     if name == 'get_company_research' and 'version_id' in args and 'dossier_id' in args:
@@ -186,6 +185,7 @@ def result(packet, tool):
         'get_company_visit': ('brief_id', 'status', 'result'),
         'get_company_comparison': ('comparison_id', 'status', 'result'),
         'discover_contacts': ('companies', 'warnings'), 'ask_contacts': ('status',),
+        'get_company_key_people': ('status',),
     }
     if name not in required and tool.get('outputSchema') is None:
         raise Invalid('OUTPUT_CONTRACT_UNAVAILABLE')
@@ -221,7 +221,6 @@ def result(packet, tool):
     pages = [(data, args.get('offset', 0)), (data.get('web_page', {}), args.get('web_offset', 0))]
     for field, arg in [('evidence', 'evidence_offset'), ('relations', 'relation_offset'), ('unverified_claims', 'claim_offset')]:
         pages.append((data.get('pagination', {}).get(field, {}), args.get(arg, 0)))
-    pages.append((data.get('company_context', {}).get('reports', {}), args.get('report_offset', 0)))
     if any(p.get('next_offset') is not None and p['next_offset'] <= offset for p, offset in pages):
         raise Invalid('PAGINATION_NOT_ADVANCING')
     if any(o.get('warnings') or o.get('complete') is False or o.get('state') in ('partial', 'unavailable')

@@ -21,11 +21,12 @@ description: Find contacts in the Salestools library, Zoho CRM or public web; br
 | 从文字提取/保存联系人 | `import_contacts_text`，复用预览与确认。 | 同上；不需要上传或 Docling。 |
 | 从新闻或纪要提取/保存多人 | 按人摘录原文，逐人调用 `import_contacts_text`，汇总预览和结果。 | 先读[多人文字导入](references/import-workflow.md#多人文字导入)，逐人查重并核对公司归属。 |
 | 修改、合并、归档、恢复或审核线索 | 先 `get_contact` 核对版本，再调用对应写工具。 | 操作前读 [维护与身份核对](references/record-maintenance.md)。 |
-| 企业关联、背景或历史报告 | 现有工具的企业上下文功能。 | 读 [企业关联与历史](references/company-context.md)。 |
+| 某企业的决策层、研发骨干或关键人 | 转到企业研究 skill 的 `get_company_key_people`；启用图谱时会异步同步公开人物线索。库内按姓名核对待核实记录时用 `search_contacts` 的 `include_unverified:true`。 | 读 [关键人](../salestools-customer-assessment/references/key-people.md)。 |
+| 企业关联或背景 | 现有工具的企业上下文功能。 | 读 [企业关联](references/company-context.md)。 |
 | 客户开发简报、首次拜访或会前准备 | 转到企业研究 skill 的共享拜访或只读草稿场景；这里只提供所需人物与 CRM 资料。 | 读 [客户开发简报与拜访准备](../salestools-customer-assessment/references/sales-briefs.md)。 |
 | 持续企业研究、产品销售专题或单产品多企业比较 | 转到企业研究 skill，按相应研究/比较工具执行，不靠联系人搜索生成机会评级。 | 读 [企业研究与客户开发](../salestools-customer-assessment/SKILL.md)。 |
 
-只读取当前任务需要的参考，不默认加载全部文档。企业研究或产品评估使用 [客户体检 skill](../salestools-customer-assessment/SKILL.md)。
+只读取当前任务需要的参考，不默认加载全部文档。企业研究或产品机会判断使用 [企业研究 skill](../salestools-customer-assessment/SKILL.md)。
 
 “综合查找”未限定来源时，先查库；有明确目标公司再查网页，最后核对相关档案。用户指定来源或顺序时遵从；项目客户或学校关键词不自动作为招聘目标公司。
 

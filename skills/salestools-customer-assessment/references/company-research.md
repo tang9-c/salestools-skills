@@ -1,6 +1,6 @@
 # 共享企业研究与产品销售场景专题
 
-按需读取。持续企业研究与产品专题共用档案、版本、队列及六个工具；工具仅在研究功能开启后可见。它们与 submit_assessment 正式评估、ask_company 单次同步追问相互独立，不能混用 ID。
+按需读取。持续企业研究与产品专题共用档案、版本、队列及六个工具；工具仅在研究功能开启后可见。它们与 ask_company 单次同步追问相互独立。
 
 ## 先读已有成果，再决定是否研究
 
@@ -25,7 +25,7 @@ base_version_id 必须是**档案全局最新版本**。例如最新 V9 研究 C
 
 ## 指定产品专题
 
-使用原 start_company_research，指定 template_id:"product_sales_scenario"。无档案用 initial，已有成果用 continue；需要重核旧资料时用 refresh。不要寻找不存在的 start_product_sales_scenario 工具，也不自动提交正式七产品评估。
+使用原 start_company_research，指定 template_id:"product_sales_scenario"。无档案用 initial，已有成果用 continue；需要重核旧资料时用 refresh。不要寻找不存在的 start_product_sales_scenario 工具。
 
 例如围绕 Creo 生成结构化探索；示例中的档案、版本和 operation_id 在实际调用前替换为本次真实值：
 
@@ -45,7 +45,9 @@ base_version_id 必须是**档案全局最新版本**。例如最新 V9 研究 C
 
 完成后通过 get_company_research 读取 template_result.products：场景、软件、阻碍的 claim 引用，以及 new_purchase/replacement/complement 三类路径。state 为 worth_exploring、insufficient 或 contradicted；按结果解释值得验证、依据不足或存在反证，不改写为采购阶段、成交概率或我方产品更优。
 
-近期公共场景可以支持待验证探索，同时 claim 仍是 historical；保留该限定。只有招聘、竞品名称、个人技能或供应商使用，不能证明企业当前部署，也不足以证明需要替换。路径依据变化、无法核验、过期或冲突时保留降级和缺口。
+路径由服务端按规则从研究事实推导，不是模型判断：worth_exploring 需要近期、属于目标企业且主体已确认的场景依据（补充还需现用软件，替换还需需求与现用软件）；没有依据但有阻碍时为 contradicted。worth_exploring 也可能同时带 contradicting_claim_ids，表示有依据、但存在需要核实的阻碍，两者都要展示，不能只报“值得探索”。rationale 是所引 claim 的原文，prerequisites 是按路径类型给出的固定前提，不当作模型的分析结论。
+
+claim 的时效按返回的 temporal_scope 解释，historical 与 unknown 要保留限定，不升级为当前情况。只有招聘、竞品名称、个人技能或供应商使用，不能证明企业当前部署，也不足以证明需要替换。路径依据变化、无法核验、过期或冲突时保留降级和缺口。
 
 ## 状态、证据与恢复
 

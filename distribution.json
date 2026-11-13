@@ -1,21 +1,21 @@
 {
-  "source_commit": "288af5bb238c6aa52bafe6bc27fb75b608875596",
+  "source_commit": "148e948aecbfd18e9467dc2bcf87ca6cde205c56",
   "skills": [
     "salestools-customer-assessment",
     "salestools-contact-management"
   ],
   "sha256": {
     "README.md": "cc0a975cf9cb1752fa800e8bbd0402dd799e01ee960a9f6cdade5d9338addf4a",
-    "skills/salestools-contact-management/SKILL.md": "4bd86ae0eda526b37807425f9884fb056de1736f737faa4ce4c99d553aa8746b",
+    "skills/salestools-contact-management/SKILL.md": "b105629a5505839e36223bd8dec714cd8fe0444cc80a11b10535f5badc7f2b36",
     "skills/salestools-contact-management/references/company-context.md": "86f0ec0fe8f86c57dcf8c0a4f11779da7fd43a0ce0e57651abf9952a75a50f80",
     "skills/salestools-contact-management/references/import-workflow.md": "d37092ff3d799e8e28c561ff2226cdb8b7fe882696f576ba8a17569b8d458467",
     "skills/salestools-contact-management/references/library-search.md": "901acf623d8ba1d31bdac45add74e6daf0cd0db59d591bc4b4b76c3e9177ba34",
     "skills/salestools-contact-management/references/mcp-execution.md": "05d8b2d243b619b65744c0b784e31e09e0864a55836c8ec382be6ef9e8f7a61e",
     "skills/salestools-contact-management/references/record-maintenance.md": "629552c0634e547c5b96289be0af46ce23f463cb17b5833dfae6ce8b208ce903",
     "skills/salestools-contact-management/references/web-discovery.md": "103b9dc92fdd9e93be44a618089005bf3de6fadf6627da8186a8843111a09a71",
-    "skills/salestools-contact-management/references/zoho-discovery.md": "64be5bfd9a6ea5f7f729fefe4b97be1b94911bf216a25a284db1aa87da89b60c",
+    "skills/salestools-contact-management/references/zoho-discovery.md": "4820f2901980f5cc5b621decad566605781e55ff2b8038114ce2a1ee651264fd",
     "skills/salestools-contact-management/scripts/requirements.txt": "117bb7857e2106917057761be56b51e26df4b9c0e3ebdbcf48a992e94534c6ac",
-    "skills/salestools-contact-management/scripts/validate_mcp_call.py": "edb690e086d7d41a02f36fe8c67953ca81aa51c0c351c0e590166fc4201f238c",
+    "skills/salestools-contact-management/scripts/validate_mcp_call.py": "68115a5d89d352afdd9b08c1c3d2bb4246732fc4acdd93aa49d3316aa518d3da",
     "skills/salestools-customer-assessment/SKILL.md": "ff79ff243e790d741a9654971fbf02365cf9b80002d1dec2d3c82e790b16a872",
     "skills/salestools-customer-assessment/references/company-comparisons.md": "c5785bc6012968d5617dbee23c8befbaf8a40f7dc4db6863bf2737054fdc1288",
     "skills/salestools-customer-assessment/references/company-questions.md": "0981ceb82a94ff3995ab0b3945c84a72d55a8753e909ab5751733aa59bf1fee9",

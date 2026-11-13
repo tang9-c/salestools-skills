@@ -142,6 +142,13 @@ def request(packet):
                        and e['call']['arguments'].get('query') == args.get('query')
                        and e['call']['arguments'].get('region_hint') == args.get('region_hint') for e, d in data):
                 raise Invalid('WEB_PAGE_CONTEXT_MISMATCH')
+        if args.get('m2_cursor') and not any(
+            e['call']['arguments'].get('query') == args.get('query')
+            and (d.get('m2', {}).get('next_cursor') == args['m2_cursor']
+                 or any(c.get('selection') == args['m2_cursor'] for c in d.get('m2', {}).get('candidates', [])))
+            for e, d in data
+        ):
+            raise Invalid('M2_CURSOR_NOT_FROM_HISTORY')
         for pair in args.get('zoho_account_records', []):
             if pair not in packet.get('confirmations', {}).get('crm_accounts', []):
                 raise Invalid('CRM_USER_SELECTION_REQUIRED')
@@ -207,7 +214,7 @@ def result(packet, tool):
             raise Invalid('RESULT_IDENTIFIER_TYPE', '$/response/' + key)
     if data.get('status') in ('queued', 'running', 'processing', 'extracting', 'parsing', 'waiting_research', 'generating'):
         return 'waiting'
-    if data.get('status') in ('needs_confirmation', 'ready_for_review', 'clarify') or data.get('zoho', {}).get('status') == 'needs_confirmation':
+    if data.get('status') in ('needs_confirmation', 'ready_for_review', 'clarify') or any(data.get(source, {}).get('status') == 'needs_confirmation' for source in ('zoho', 'm2')):
         return 'needs_confirmation'
     if name == 'get_company_profile':
         if not data['candidates']:

@@ -3,6 +3,7 @@
 import argparse
 import json
 from pathlib import Path
+import re
 import sys
 
 READ_ONLY = {
@@ -22,6 +23,8 @@ for _key in ('dossier_id', 'version_id', 'run_id', 'brief_id', 'comparison_id',
              'import_id', 'claim_id', 'relation_id', 'file_id', 'credit_code'):
     ID_KEYS[_key] = {_key}
 ID_KEYS['run_id'].add('research_run_id')
+
+GRAPH_SYNC_SUMMARY = re.compile(r'图谱同步：新增 [0-9]+、更新 [0-9]+、未变化 [0-9]+；任职状态未核实（unknown）。')
 
 
 class Invalid(Exception):
@@ -230,7 +233,17 @@ def result(packet, tool):
         pages.append((data.get('pagination', {}).get(field, {}), args.get(arg, 0)))
     if any(p.get('next_offset') is not None and p['next_offset'] <= offset for p, offset in pages):
         raise Invalid('PAGINATION_NOT_ADVANCING')
-    if any(o.get('warnings') or o.get('complete') is False or o.get('state') in ('partial', 'unavailable')
+    discovery_sources = (data.get('m2'), data.get('zoho')) if name == 'discover_contacts' else ()
+
+    def has_warning(obj):
+        warnings = obj.get('warnings')
+        if not warnings or not isinstance(warnings, list) or not any(obj is source for source in discovery_sources):
+            return bool(warnings)
+        return any(not isinstance(warning, str) or not GRAPH_SYNC_SUMMARY.fullmatch(warning) for warning in warnings)
+
+    if name == 'discover_contacts' and data.get('m2', {}).get('next_cursor') is not None:
+        return 'partial'
+    if any(has_warning(o) or o.get('complete') is False or o.get('state') in ('partial', 'unavailable')
            or o.get('status') in ('partial', 'failed', 'insufficient') or o.get('next_offset') is not None for o in objects(data)):
         return 'partial'
     return 'validated'

@@ -1,5 +1,5 @@
 {
-  "source_commit": "148e948aecbfd18e9467dc2bcf87ca6cde205c56",
+  "source_commit": "03e3f25ca94a4c24eee4d245f944ee343ee3e947",
   "skills": [
     "salestools-customer-assessment",
     "salestools-contact-management"
@@ -15,7 +15,7 @@
     "skills/salestools-contact-management/references/web-discovery.md": "103b9dc92fdd9e93be44a618089005bf3de6fadf6627da8186a8843111a09a71",
     "skills/salestools-contact-management/references/zoho-discovery.md": "4820f2901980f5cc5b621decad566605781e55ff2b8038114ce2a1ee651264fd",
     "skills/salestools-contact-management/scripts/requirements.txt": "117bb7857e2106917057761be56b51e26df4b9c0e3ebdbcf48a992e94534c6ac",
-    "skills/salestools-contact-management/scripts/validate_mcp_call.py": "68115a5d89d352afdd9b08c1c3d2bb4246732fc4acdd93aa49d3316aa518d3da",
+    "skills/salestools-contact-management/scripts/validate_mcp_call.py": "53bdc9e486695827724fb9b627b26c436496b9cce3302bd90e26fd08f71e3795",
     "skills/salestools-customer-assessment/SKILL.md": "ff79ff243e790d741a9654971fbf02365cf9b80002d1dec2d3c82e790b16a872",
     "skills/salestools-customer-assessment/references/company-comparisons.md": "c5785bc6012968d5617dbee23c8befbaf8a40f7dc4db6863bf2737054fdc1288",
     "skills/salestools-customer-assessment/references/company-questions.md": "0981ceb82a94ff3995ab0b3945c84a72d55a8753e909ab5751733aa59bf1fee9",

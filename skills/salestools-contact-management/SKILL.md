@@ -15,6 +15,7 @@ description: Use when looking up contacts in the Salestools library, M2, Zoho CR
 | --- | --- | --- |
 | 在联系人库找姓名、公司、岗位或技能 | `search_contacts`，优先展示联系人图谱 App。 | 要翻页、核对证据、查未核实线索或项目客户时读 [库内搜索与图谱](references/library-search.md)。 |
 | 看某人档案、问已有关系 | 用真实 `entity_id` 调用 `get_contact`；关系问答用 `ask_contacts`。 | 同上；多候选无法区分时先请用户选定。 |
+| 查看符合条件的 M2 联系人的完整联系方式 | 在联系人图谱详情点击「查看完整联系方式」，在 Salestools 页面点击「显示联系方式」。 | 读 [M2 网页查看与额度](references/library-search.md#m2-网页查看与额度)。 |
 | 查 Zoho CRM 公司联系人 | `discover_contacts(source:"zoho")`。 | 调用前读 [Zoho 查询与入库](references/zoho-discovery.md)。 |
 | 查 M2 或并查 Zoho CRM 和 M2 | `discover_contacts(source:"m2")` 或 `discover_contacts(source:"zoho_m2")`。 | M2 使用部署配置的统一只读账号。启用共享图谱后，已取得的联系人自动同步并保留 M2 来源。 |
 | 查公开网页联系人 | `discover_contacts(source:"web")`；并查网页和 Zoho CRM 用 `source:"all"`。 | 调用或续页前读 [网页发现与快照分页](references/web-discovery.md)。 |
@@ -33,7 +34,7 @@ description: Use when looking up contacts in the Salestools library, M2, Zoho CR
 
 - M2 单查用 `source:"m2"`，与 Zoho CRM 并查用 `source:"zoho_m2"`。并查时分别读取 `m2` 和 `zoho`，标明各自来源和状态。一个来源失败时仍展示另一来源已取得的结果。区分查询完成但无结果、待确认公司、分页未完和来源失败。
 - `m2.status="needs_confirmation"` 时请用户确认公司，再把该候选的 `selection` 作为 `m2_cursor`。续页使用 `m2.next_cursor`。两种调用均保留原 `query`、`source` 和已有的 CRM 选择参数。游标只用于工具调用。
-- 查询结果、图谱详情和来源证据沿用服务端返回的姓名和来源标签。已确认是同一公司、忽略空白字符后姓名相同且任一记录来自 CRM 时，各来源姓名均脱敏，已有联系方式显示为 `***`。按独立联系人记录展示，不还原被掩码的值或自动合并联系人。`discover_contacts` 仅展示它返回的字段，电话和邮箱以图谱详情的返回为准。
+- MCP 服务端统一脱敏。查询、图谱详情、来源证据、问答和导入预览中的敏感字段以服务端掩码或省略为准。保留姓名掩码、来源标签和独立联系人记录。需要查看符合条件的 M2 完整业务联系方式时，指引用户通过图谱按钮在网页查看。
 - OAuth 刷新由服务端使用统一只读账号处理。收到 `M2_AUTH_REQUIRED` 时提示联系管理员核对或重新授权该账号。查询用户无需提供令牌或密码。遇到限流、超时或其他失败时按实际错误报告，仍保留已取得的 CRM 结果。
 
 “综合查找”未限定来源时，先查库；有明确目标公司再查网页，最后核对相关档案。用户指定来源或顺序时遵从；项目客户或学校关键词不自动作为招聘目标公司。
@@ -58,3 +59,5 @@ description: Use when looking up contacts in the Salestools library, M2, Zoho CR
 
 搜索报告实际命中范围、来源与警告；档案核对引用真实记录与证据；导入只有提交成功并回读才能称已入库；分别说明 Zoho、M2 的查询完整性与图谱同步状态。
 向用户展示人物、公司和岗位名称，内部 ID 仅用于工具调用、来源核对或用户明确需要时展示。
+
+联系人读取返回 `CONTACT_COMPANY_QUOTA_EXCEEDED` 时，展示服务端 `retry_at`（含时区），停止本次联系人读取，包括网页查看。收到 `CONTACT_COMPANY_QUOTA_UNAVAILABLE` 时说明额度暂不可核验，可稍后由用户重新发起。

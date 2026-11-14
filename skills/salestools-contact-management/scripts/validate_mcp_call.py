@@ -28,8 +28,8 @@ GRAPH_SYNC_SUMMARY = re.compile(r'图谱同步：新增 [0-9]+、更新 [0-9]+�
 
 
 class Invalid(Exception):
-    def __init__(self, code, path='$'):
-        self.code, self.path = code, path
+    def __init__(self, code, path='$', retry_at=None):
+        self.code, self.path, self.retry_at = code, path, retry_at
 
 
 def objects(value):
@@ -43,9 +43,18 @@ def objects(value):
 
 
 def payload(response):
-    if not isinstance(response, dict) or response.get('isError') is True:
+    if not isinstance(response, dict):
         raise Invalid('MCP_ERROR')
     data = response.get('structuredContent')
+    if response.get('isError') is True:
+        if isinstance(data, dict):
+            retry_at = data.get('retry_at')
+            if data.get('error_code') == 'CONTACT_COMPANY_QUOTA_EXCEEDED' and isinstance(retry_at, str) and re.fullmatch(
+                    r'[0-9]{4}-[0-9]{2}-[0-9]{2}T[0-9]{2}:[0-9]{2}:[0-9]{2}\.[0-9]{3}Z', retry_at):
+                raise Invalid('CONTACT_COMPANY_QUOTA_EXCEEDED', retry_at=retry_at)
+            if data.get('error_code') == 'CONTACT_COMPANY_QUOTA_UNAVAILABLE':
+                raise Invalid('CONTACT_COMPANY_QUOTA_UNAVAILABLE')
+        raise Invalid('MCP_ERROR')
     if data is None:
         texts = [c.get('text', '') for c in response.get('content', []) if c.get('type') == 'text']
         try:
@@ -294,7 +303,8 @@ def validate(mode, packet):
                            'not_proof_of_current_employment_or_software_deployment']}
     except Invalid as error:
         return {'ok': False, 'decision': 'needs_verification' if error.code.startswith('HANDOFF_') else 'blocked',
-                'errors': [{'code': error.code, 'path': error.path}]}
+                'errors': [{'code': error.code, 'path': error.path}],
+                **({'retry_at': error.retry_at} if error.retry_at else {})}
     except (KeyError, TypeError, ValueError, AttributeError):
         return {'ok': False, 'decision': 'blocked', 'errors': [{'code': 'INVALID_ENVELOPE', 'path': '$'}]}
 

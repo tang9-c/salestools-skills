@@ -13,6 +13,7 @@ description: Use when researching Chinese companies through Salestools MCP, cont
 
 | 用户意图 | 工具与必要动作 |
 | --- | --- |
+| 复盘已有 Zoho 商机、评估成交风险或比较商机历史 | 使用[商机复盘 Skill](../sales-deal-review/SKILL.md)。 |
 | 初步了解、公司基本情况 | `get_company_profile`；简称可用于候选搜索，多候选请用户选定。 |
 | 持续研究、补充企业资料、核查软件使用或更新已有研究 | 读 [共享研究与产品专题](references/company-research.md)；读取已有成果后，按需求选择 `start_company_research` 的 initial/continue/refresh。持续表示可按需积累版本，不是定时监控。 |
 | 围绕指定产品找新购、替换或补充机会 | 同一研究工具选择 `template_id:"product_sales_scenario"` 和明确 `products`，没有独立专题工具；读 [共享研究与产品专题](references/company-research.md)。 |

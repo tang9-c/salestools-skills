@@ -1,12 +1,23 @@
 {
-  "source_commit": "6a02c297aa104af629382f60348b68c4b7427210",
+  "source_commit": "55cf17b5976cf94e310a6cede2cbd13594e1539d",
   "skills": [
     "salestools-customer-assessment",
-    "salestools-contact-management"
+    "salestools-contact-management",
+    "sales-deal-review"
   ],
   "sha256": {
-    "README.md": "cc0a975cf9cb1752fa800e8bbd0402dd799e01ee960a9f6cdade5d9338addf4a",
-    "skills/salestools-contact-management/SKILL.md": "aee90908d373475f3c8e2a248140ed7fccbcafe7a76fcccd70b51256485d74af",
+    "README.md": "8e18c3a6c6683d0ce5989eaeea9f303604197bc9a1a2956c386e4bb7c8c4312d",
+    "skills/sales-deal-review/SKILL.md": "76a58456d5025715b2db0d882577a5572e2db9a065e7fb253ba4c7fdaf1623e7",
+    "skills/sales-deal-review/references/evidence-and-review.md": "08b5f0795cf313bcc110e49ad3612eafee745f7b2bfd88d5707ad6edebd1ead4",
+    "skills/sales-deal-review/references/examples.md": "f090eea7f758e0bfeb139bd3364455d83d64e469e73901389319aecdeeda3685",
+    "skills/sales-deal-review/references/execution.md": "7d59c8ccb69cd7362f6737442947e9de35615597eb05f3597a7421dc55548f0e",
+    "skills/sales-deal-review/references/file-evidence.md": "38c50be4152e8317e2855100b562810fcd0506d6df54794133348d673b3e9e6f",
+    "skills/sales-deal-review/references/frameworks.md": "ab272a41066ad84f02441c2b0361bf7d5cf86c5771f4c1d6cde58803e300ba6b",
+    "skills/sales-deal-review/references/quality-check.md": "dfc0a90db2658a08452c0a7c66ac0a59ea2d45bd4810c1689cc7e8b80f006254",
+    "skills/sales-deal-review/references/writeback.md": "f113e522fd4a09fd817f1752b12b280e92de965791ec3074cc7182912aefe38f",
+    "skills/sales-deal-review/scripts/check_report.py": "86aacce7cb5e95ac84d06b507ba1bbedff22185ee49cf4539235945a6f0b1292",
+    "skills/sales-deal-review/scripts/validate_mcp_call.py": "ae3680b45c2e979287818887dfa57067ca3b27d594a255e8c4dbfc38a5cc87b6",
+    "skills/salestools-contact-management/SKILL.md": "3e800b66110c2eb9d9b3ad715ec37b0633fe974d726c5225cfae9e61e0b1a083",
     "skills/salestools-contact-management/references/company-context.md": "18312e2b1ab9001027dca2e25d215e370d67f1a6a0fa9dcd3e049d1116e67806",
     "skills/salestools-contact-management/references/import-workflow.md": "d37092ff3d799e8e28c561ff2226cdb8b7fe882696f576ba8a17569b8d458467",
     "skills/salestools-contact-management/references/library-search.md": "3598bc0bc2f5f028105de43a48e543176287f8cbfec2091e8c16ba050857a230",
@@ -16,7 +27,7 @@
     "skills/salestools-contact-management/references/zoho-discovery.md": "4820f2901980f5cc5b621decad566605781e55ff2b8038114ce2a1ee651264fd",
     "skills/salestools-contact-management/scripts/requirements.txt": "117bb7857e2106917057761be56b51e26df4b9c0e3ebdbcf48a992e94534c6ac",
     "skills/salestools-contact-management/scripts/validate_mcp_call.py": "2d343d9a05d4fa5e0a2d8f0360e9c6671beed059733143d2cccccb5621053ae2",
-    "skills/salestools-customer-assessment/SKILL.md": "ff79ff243e790d741a9654971fbf02365cf9b80002d1dec2d3c82e790b16a872",
+    "skills/salestools-customer-assessment/SKILL.md": "def5d971333190f0148ddb96d37c42adc2ae39e7a4334f75202f47e15e2ce456",
     "skills/salestools-customer-assessment/references/company-comparisons.md": "c5785bc6012968d5617dbee23c8befbaf8a40f7dc4db6863bf2737054fdc1288",
     "skills/salestools-customer-assessment/references/company-questions.md": "0981ceb82a94ff3995ab0b3945c84a72d55a8753e909ab5751733aa59bf1fee9",
     "skills/salestools-customer-assessment/references/company-research.md": "6bfec749a8ee081bdbc35864ae10b7cc9618209ece1ccfc539f9899a698a9d6c",

@@ -6,7 +6,7 @@
 
 1. 法定主体未明确时先 get_company_profile；同名、集团或子公司候选须选定。创建/继续/刷新研究依赖服务端已核实且有效的画像；RESEARCH_IDENTITY_REQUIRED 时重新核验，不改名或拼接主体绕过检查。
 2. 用 `get_company_research({credit_code})` 或 `{dossier_id}` 读取已有成果，两项标识互斥；可加真实 version_id 固定版本。没有档案或版本不等于企业无机会。
-3. 该读取默认只返回档案最新一个版本，product_keys 是本版范围，不是全档案七产品汇总。所需产品未出现时，用 `list_company_research_versions({dossier_id,offset,limit})` 找到覆盖它的最近版本，再带 version_id 回读；跟随 next_offset，limit 上限 50，找到本次需要的版本即可停止。
+3. 该读取默认只返回档案最新一个版本，product_keys 是本版范围，不是全档案七产品汇总。所需产品未出现时，用 `list_company_research_versions({dossier_id,offset,limit})` 找到覆盖它的最近版本，再带 version_id 回读；跟随 next_offset，找到本次需要的版本即可停止。
 4. 用户要求只读或只用现有资料时，到此整理结论和缺口。明确要求新研究、补缺口或更新时再创建任务，不因读取返回错误就自动开展付费研究。
 
 ## 模式、产品与版本
@@ -47,14 +47,14 @@ base_version_id 必须是**档案全局最新版本**。例如最新 V9 研究 C
 
 路径由服务端按规则从研究事实推导，不是模型判断：worth_exploring 需要近期、属于目标企业且主体已确认的场景依据（补充还需现用软件，替换还需需求与现用软件）；没有依据但有阻碍时为 contradicted。worth_exploring 也可能同时带 contradicting_claim_ids，表示有依据、但存在需要核实的阻碍，两者都要展示，不能只报“值得探索”。rationale 是所引 claim 的原文，prerequisites 是按路径类型给出的固定前提，不当作模型的分析结论。
 
-claim 的时效按返回的 temporal_scope 解释，historical 与 unknown 要保留限定，不升级为当前情况。只有招聘、竞品名称、个人技能或供应商使用，不能证明企业当前部署，也不足以证明需要替换。路径依据变化、无法核验、过期或冲突时保留降级和缺口。
+claim 的时效与各类信号的含义按[证据边界](evidence-limits.md)解释。路径依据变化、无法核验、过期或冲突时保留降级和缺口。
 
 ## 状态、证据与恢复
 
 - get_company_research_status 只接受 run_id。queued/running 是处理中；completed/partial 后用返回的 version_id 和 dossier_id 回读成果。partial 仍可有有效事实，要按 coverage、gaps、source_status 解释处理范围与资料局限。
-- get_company_research_evidence 接受 version_id，可选 claim_id **或** product，不能同时传两项。分页 offset 默认 0、limit 默认 10/上限 20，跟随 next_offset。只展开关键结论所需证据和依赖，引用固定版本、原文与日期。
-- get/list/status/evidence 均只读，不触发模型、来源重查或新版本。已有历史结果不因重读自动变新；新研究也不覆盖旧版本。
+- get_company_research_evidence 接受 version_id，可选 claim_id **或** product，不能同时传两项，跟随 next_offset。只展开关键结论所需证据和依赖，引用固定版本、原文与日期。
+- 新研究不覆盖旧版本。只读工具、重读和分页规则见[任务、标识与副作用](tasks-and-ids.md)。
 - RESEARCH_ALREADY_RUNNING 返回 run_id 时跟踪共享任务，不换 operation_id 重复创建；RESEARCH_ALREADY_EXISTS 时读取已有档案。RESEARCH_VERSION_CONFLICT 时读最新版本重新核对；若仍需继续，按更新后的完整参数建立新 operation_id。
-- 失败或取消保留已有成果；无任何版本的空档案不能用 continue。用户明确重试首次研究时仍用 initial 和新 operation_id；原样重放旧 ID 只会返回旧任务。队列/用户上限等待后查询，不循环提交。RESEARCH_VERSION_UNSUPPORTED 时说明不兼容，不自行修改模板或存储绕过校验。
-- 其他已认证用户可用 `get_company_research_status({run_id})` 读取常规状态，也可读取已发布的研究版本。`response_version:2` 的任务状态和 `get_company_research_draft` 草稿读取限任务创建者。线上验收确认了常规状态和成果可跨身份读取，以及草稿读取和取消被拒绝。v2 状态的权限限制来自服务端实现，该次线上验收未覆盖。
+- 失败或取消保留已有成果；无任何版本的空档案不能用 continue。用户明确重试首次研究时仍用 initial 和新 operation_id；原样重放旧 ID 只会返回旧任务。RESEARCH_VERSION_UNSUPPORTED 时说明不兼容，不自行修改模板或存储绕过校验。
+- 其他已认证用户可用 `get_company_research_status({run_id})` 读取常规状态和已发布版本；`response_version:2` 的状态和 `get_company_research_draft` 限任务创建者，见[共享范围](tasks-and-ids.md#共享范围)。
 - 只有任务创建者明确要求取消时，才用 `cancel_company_research({run_id})`，并说明取消会影响依赖该研究的团队工作。持续研究按需发起，新增定时任务需用户另行提出。

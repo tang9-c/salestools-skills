@@ -11,12 +11,12 @@ operation_id 稳定，响应丢失保持相同 ID 与完整请求；版本冲突
 - 导入与 Zoho 同步可在现有线索中长期保存 possible_duplicate；查看任一端可见。它不成为正式边，也不参与职业搜索、问答或向量；原件清理不使线索到期。
 - 匹配失败/截断须说核对不完整，不能说没有重复。记录名称是发现时快照；相同理由不证明身份。已处理线索不自动重新打开，不承诺回填历史库。
 - 确认同一人并授权合并：读取双方版本，用 merge_contacts，成功后回读存续档案与线索。不能用 review_contact_claim(action=confirm) 建“同一人”边；解决指定对象不代表其他提示已排除。
-- 确认不同人或明确忽略：读线索实际 subject_id 的当前版本，即使用户当前查看另一端；用 review_contact_claim(action=reject)，附稳定 operation_id、expected_entity_version 和 1–500 字 confirmation_note。说明是确认不同人还是仅忽略；暂缓不授权拒绝。
+- 确认不同人或明确忽略：读线索实际 subject_id 的当前版本，即使用户当前查看另一端；用 review_contact_claim(action=reject)，附稳定 operation_id、expected_entity_version 和 confirmation_note（长度按在线 schema）。说明是确认不同人还是仅忽略；暂缓不授权拒绝。
 
 ## 其他待核实线索
 
 按分页读取完整 claim，核对实际主体、目标、原文及版本，再 review_contact_claim。
-确认需 1–500 字说明；目标未正确定位时先提供正确 target_id。弱引文不能当人工确认。
+确认需填写说明；目标未正确定位时先提供正确 target_id。弱引文不能当人工确认。
 $experience 等未定位经历不能直接确认成 Person 属性；应核对具体经历后在授权范围内写正确关系，并明确处理旧线索。
 学校上的旧 properties.major 错误 claim 同样不能直接确认或自动迁移。
 

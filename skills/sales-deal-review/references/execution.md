@@ -1,6 +1,6 @@
 # 实际调用与结果核对
 
-使用当前宿主的 MCP 连接。安装时将本 Skill、联系人管理和企业研究放在同级目录，按[共享的依赖和执行说明](../../salestools-contact-management/references/mcp-execution.md)准备 Python 和 jsonschema。当前 Skill 的[校验脚本](../scripts/validate_mcp_call.py)复用离线 JSON Schema 校验。
+使用当前宿主的 MCP 连接。安装时将本 Skill、联系人管理和企业研究放在同级目录，按[共享的依赖和执行说明](../../salestools-contact-management/references/validator-input.md)准备 Python 和 jsonschema。当前 Skill 的[校验脚本](../scripts/validate_mcp_call.py)复用离线 JSON Schema 校验。
 
 每次 MCP 调用前运行 `python3 <skill目录>/scripts/validate_mcp_call.py request`，返回后以 `result` 重跑，交回经理确认时运行 `handoff`。输入均为 JSON，可走 stdin 或用 `--file`。输入 `tools` 为在线 `tools/list` 原始工具定义，`call` 包含 `name` 和 `arguments`，`history` 从本轮真实调用累积 `{call,response}`，`result` 阶段另带本次 `response`。用户直接给出明确商机 ID 时，用 `confirmations.explicitDealId` 记录该输入，允许首次只读上下文回读。得到线上匹配结果后才能将该 ID 用于其他步骤。
 

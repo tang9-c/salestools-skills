@@ -13,7 +13,7 @@
 
 ## 固定快照分页
 
-首次传 `query`、`source:"web"`（用户明确两源时 `"all"`）及需要的 `region_hint`。网页参数为 `web_offset`（默认 0，非负安全整数）、`web_limit`（默认 50，1–100）、`web_snapshot_id`（正安全整数）。
+首次传 `query`、`source:"web"`（用户明确两源时 `"all"`）及需要的 `region_hint`。网页分页参数为 `web_offset`、`web_limit`、`web_snapshot_id`，默认值和取值范围以在线 schema 为准。
 
 保存返回的 `web_page.snapshot_id`。续页保持相同 query、region_hint，把 `web_page.next_offset` 作为 `web_offset`，把首次 ID 作为 `web_snapshot_id`；直到 next_offset 为 null。仅翻网页时使用 `source:"web"`，包括首次为 all 的情况；首次为 web 时继续 web。offset>0 必须带 ID。不要为了翻页重新发现或换用最新 ID：即使并发产生新快照，网页侧仍读取原快照及其之前的历史投影，不调用网页搜索或抽取。绑定 ID 的第 0 页也只重读网页快照。
 
@@ -31,7 +31,7 @@ ID 不存在、查询或地域不匹配、参数无效时说明分页失败；�
 
 ## 入图与展示
 
-系统在已启用图谱时异步同步快照；发现响应或分页完成不证明已经入图。单快照超过既有 256 KiB 帧等失败可使 Node 快照可读而图谱未同步，按警告说明并回读确认。
+系统在已启用图谱时异步同步快照；发现响应或分页完成不证明已经入图。快照过大等原因可能导致快照可读而图谱未同步，按警告说明并回读确认。
 
 新版明确任职形成正式 worksFor 时 employment_status 仍为 unknown，空职位不写 jobTitle/roleName；归属待核实保留人物侧 claims，不产生正式任职边。用库内搜索找到真实人物 ID，再 get_contact 分页核对该人物的来源、线索或正式关系；不能要求机构侧反查全部待核实人物。人工审核沿用维护参考，不因重复发现自动确认或重开线索。
 

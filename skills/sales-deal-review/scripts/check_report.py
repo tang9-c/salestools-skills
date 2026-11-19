@@ -16,6 +16,7 @@ TREND = {'strengthening', 'stable', 'weakening', 'unknown'}
 KINDS = {'fact', 'inference', 'question', 'action'}
 HEDGES = re.compile(r'似乎|可能|大概|估计|也许|或许|\b(seems?|probably|likely|maybe)\b', re.I)
 PLACEHOLDERS = re.compile(r'^\s*(待定|TBD|N/?A)\s*$', re.I)
+MAX_TEXT = 80
 
 
 class Invalid(Exception):
@@ -79,6 +80,7 @@ def check(packet):
                 add('STRENGTH_STATUS_MISMATCH', path)
         if set(dims) != set(DIMENSIONS):
             add('DIMENSION_COVERAGE', '$/report/dimensions')
+        notes = []
         risks = items(report.get('risks'), '$/report/risks')
         if len(risks) > 3:
             add('RISK_LIMIT', '$/report/risks')
@@ -87,6 +89,7 @@ def check(packet):
             claims.append((claim(r, path), path))
             if not all(isinstance(r.get(k), str) and r[k].strip() for k in ('impact', 'watchFor', 'mitigation')):
                 add('RISK_INCOMPLETE', path)
+            notes += [(r[k], f'{path}/{k}') for k in ('impact', 'watchFor', 'mitigation') if isinstance(r.get(k), str)]
         coaching = items(report.get('coaching'), '$/report/coaching')
         if not 4 <= len(coaching) <= 5:
             add('COACHING_COUNT', '$/report/coaching')
@@ -110,6 +113,8 @@ def check(packet):
                 add('ACTION_INCOMPLETE', path)
             else:
                 gaps.add(a['gap'])
+            if isinstance(a.get('deliverable'), str):
+                notes.append((a['deliverable'], path + '/deliverable'))
         stage = overview.get('stageAlignment')
         if not isinstance(stage, dict) or not all(isinstance(stage.get(k), str) and stage[k].strip()
                                                   for k in ('crmStage', 'supportedStage')) \
@@ -131,6 +136,9 @@ def check(packet):
             add('PLACEHOLDER_TEXT', path + '/text')
         if known is not None and set(c['evidenceIds']) - set(known):
             add('UNKNOWN_EVIDENCE_ID', path + '/evidenceIds')
+    for value, path in [(c['text'], p + '/text') for c, p in claims] + notes:
+        if len(value.strip()) > MAX_TEXT:
+            add('TEXT_TOO_LONG', path)
     for key, d in dims.items():
         cited = {i for c in d['claims'] if c['kind'] == 'fact' for i in c['evidenceIds']}
         if d['strength'] == 'strong' and len(cited) < 2:

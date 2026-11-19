@@ -13,7 +13,7 @@
 | 5 | 内部一致 | 状态与强度对应：`missing` 对应 `none`，其他状态不用 `none`。红旗、势头与健康度不互相矛盾；覆盖不足时不判绿；只有销售转述时不判绿。 | `STRENGTH_STATUS_MISMATCH`；其余人工 |
 | 6 | 行动可执行 | 红旗不超过三项且写明影响、观察信号和缓解；辅导问题 4–5 个；三个行动都写明负责人、有效日期、交付物和对应维度，至少一个针对最弱维度。 | `RISK_LIMIT`、`RISK_INCOMPLETE`、`COACHING_COUNT`、`ACTION_COUNT`、`ACTION_INCOMPLETE`、`WEAKEST_NOT_ADDRESSED` |
 | 7 | 阶段对齐 | 写出 CRM 阶段、证据支持的阶段、理由和未满足的准出条件。 | `STAGE_ALIGNMENT_MISSING`；理由人工 |
-| 8 | 篇幅 | 每条断言、影响、观察信号、缓解和交付物不超过 80 字。展示时按[展示格式](evidence-and-review.md#展示格式)：事实不重复，缺失维度合并为一行，红旗每项一行，没有规范外段落和哈希。 | `TEXT_TOO_LONG`；展示人工 |
+| 8 | 篇幅 | 每条断言、影响、观察信号、缓解和交付物不超过 80 字。展示时按[展示格式](evidence-and-review.md#展示格式)：事实不重复，维度写中文名，缺失维度合并为一行，红旗每项一行，没有规范外段落和哈希。 | `TEXT_TOO_LONG`；展示人工 |
 
 结构或枚举不符合[客户端结构](evidence-and-review.md#客户端结构)时，脚本返回 `REPORT_INVALID` 并指出路径。
 

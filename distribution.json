@@ -1,5 +1,5 @@
 {
-  "source_commit": "8377d65a297a7ef02c744ff3a5f3f39241d882c7",
+  "source_commit": "833976f98b11dfbf155e92b417b5ed79da2869c5",
   "skills": [
     "salestools-customer-assessment",
     "salestools-contact-management",
@@ -8,7 +8,7 @@
   ],
   "sha256": {
     "README.md": "9a2d73a04becf2cb924a9217ef32922fa06e9a6b48f34beb4afae2931a7b5f2e",
-    "skills/sales-deal-next-steps/SKILL.md": "e544b2ae5d0689ba5c6100ad5489fb6cda6b82b456dd5e1702aae882ff759c66",
+    "skills/sales-deal-next-steps/SKILL.md": "480977d34412994429480b5a951547a94c5538fd84b7747127a6c8682a9a1137",
     "skills/sales-deal-next-steps/references/analysis.md": "0995d8cfa1f0657b9f23e312592c3888e267e69f484e313867db77904015bb81",
     "skills/sales-deal-next-steps/references/display.md": "cab5694754fb9daf72417c3a1dd754a91e0a51e694d46d6b8928b7741de79ac3",
     "skills/sales-deal-next-steps/references/emails.md": "f62319f0daa38188e23159009228247d4838b99f929e142332c645f1ced75614",

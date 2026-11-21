@@ -1,9 +1,11 @@
 ---
 name: sales-deal-review
-description: 复盘 Zoho CRM 商机，按 MEDDPICC 核验证据强度、趋势和阶段准出，给出红旗、辅导问题和两周行动，并准备需经理确认的 CRM 回写。用户要求商机复盘、Deal Review、商机健康度、成交预测核验、阶段是否准确、下次拜访准备或复盘客户的具体商机时使用。
+description: 复盘 Zoho CRM 商机，按 MEDDPICC 核验证据强度、趋势和阶段准出，给出红旗、辅导问题和两周行动，并准备需经理确认的 CRM 回写。用户要求商机复盘、Deal Review、商机健康度、成交预测核验、阶段是否准确或复盘客户的具体商机时使用。安排下一次沟通或写跟进邮件用 sales-deal-next-steps。
 ---
 
 # 商机复盘
+
+本 Skill 回答「这单怎么样」。用户要安排下一次沟通、见谁问什么或写跟进邮件时，使用[商机下一步 Skill](../sales-deal-next-steps/SKILL.md)，可共用本轮证据和复盘结论。
 
 ## 确认商机和取数范围
 

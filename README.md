@@ -1,17 +1,17 @@
 # Salestools Skills
 
-本包包含企业研究与客户开发、联系人管理和商机复盘三个 Skill。服务端代码独立维护；安装 Skill 不授予 MCP 服务或企业数据的访问权限。
+本包包含企业研究与客户开发、联系人管理、商机复盘和商机下一步四个 Skill。服务端代码独立维护；安装 Skill 不授予 MCP 服务或企业数据的访问权限。
 
 ## 一起安装
 
-使用支持的 Skills CLI，从包含商机复盘的已发布版本一次选中三个 Skill。发布前可解压维护者从已提交版本导出的分发包，按下文手动安装。
+使用支持的 Skills CLI，从包含商机下一步的已发布版本一次选中四个 Skill。发布前可解压维护者从已提交版本导出的分发包，按下文手动安装。
 
 ```sh
 npx skills add tang9-c/salestools-skills \
-  --skill salestools-customer-assessment salestools-contact-management sales-deal-review
+  --skill salestools-customer-assessment salestools-contact-management sales-deal-review sales-deal-next-steps
 ```
 
-选择实际使用的宿主和安装范围。安装后三个目录必须同级，企业研究与商机复盘的校验脚本依赖联系人管理的共享实现。手动安装时下载同一 Release 的完整 ZIP，将 `skills/` 下三个目录一起放到宿主的 Skill 目录，保留 `references/` 与 `scripts/`。
+选择实际使用的宿主和安装范围。安装后四个目录必须同级：企业研究与商机复盘的校验脚本依赖联系人管理的共享实现，商机下一步的校验入口调用商机复盘的实现。手动安装时下载同一 Release 的完整 ZIP，将 `skills/` 下四个目录一起放到宿主的 Skill 目录，保留 `references/` 与 `scripts/`。
 
 CLI 用法见 [vercel-labs/skills](https://github.com/vercel-labs/skills)。不同宿主支持情况以其实际功能为准；不支持执行脚本的宿主不能声称已执行参数和结果校验。
 
@@ -32,12 +32,13 @@ python3 -m venv /path/to/salestools-skill-venv
 - 企业研究：持续研究、指定产品销售专题、首次拜访准备、单产品企业比较和企业问答。
 - 联系人管理：共享库与关系图谱、Zoho/网页发现、资料导入和有证据的维护。
 - 商机复盘：按 MEDDPICC 整理授权可见的商机证据，并与用户在当前会话提供的过往报告对比。文件在客户端解析，完整报告和引用摘录留在客户端。经用户在浏览器确认后，才将获准的摘要写入 Zoho Notes，并更新所选商机字段。
+- 商机下一步：针对具体商机安排先见谁、问什么、争取什么买方承诺，起草跟进邮件并按客户回复调整；七种产品分别给出角色、验证材料和承诺。只在当前会话展示，不保存、不回写、不发信。
 - Skill 衔接：执行 request/result/handoff 校验，保留身份、证据归属、历史时间和访问限制。
 
 脚本只检查输入和返回，不自行发送网络请求或重试写入。来源引文和个人经历不能直接证明企业部署软件或存在采购意向。
 
 ## 版本与更新
 
-新版分发包中的三个 Skill 一起安装和更新。Release 提供完整 ZIP 与 SHA-256 校验文件；`distribution.json` 记录来源提交和每个发布文件的 SHA-256。更新时重复上述安装并选中三个 Skill，或替换为同一 Release 的三个完整目录，不混用版本。
+新版分发包中的四个 Skill 一起安装和更新。Release 提供完整 ZIP 与 SHA-256 校验文件；`distribution.json` 记录来源提交和每个发布文件的 SHA-256。更新时重复上述安装并选中四个 Skill，或替换为同一 Release 的四个完整目录，不混用版本。
 
 当前分发内容可公开阅读，不包含服务端实现、凭据、真实联系人或客户研究结果。公开可读不等于授予额外开源许可；未经另行许可，不授权转售或再许可。

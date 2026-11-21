@@ -14,6 +14,7 @@ description: 在 Salestools 联系人库、M2、Zoho CRM 和公开网页中查�
 | 意图 | 首选操作 | 何时读取参考 |
 | --- | --- | --- |
 | 复盘已有 Zoho 商机、评估成交风险或比较商机历史 | 使用[商机复盘 Skill](../sales-deal-review/SKILL.md)。 | 查看 MEDDPICC 证据、风险和历史复盘。 |
+| 已有具体沟通，问下一次怎么推、见谁、问什么、写跟进邮件 | 使用[商机下一步 Skill](../sales-deal-next-steps/SKILL.md)，这里只提供所需人物资料。 | 核实参会人或引荐路径时按库内搜索参考。 |
 | 在联系人库找姓名、公司、岗位或技能 | `search_contacts`，优先展示联系人图谱 App。 | 要翻页、核对证据、查未核实线索或项目客户时读 [库内搜索与图谱](references/library-search.md)。 |
 | 看某人档案、问已有关系 | 用真实 `entity_id` 调用 `get_contact`；关系问答用 `ask_contacts`。 | 同上；多候选无法区分时先请用户选定。 |
 | 查看符合条件的 M2 联系人的完整联系方式 | 在联系人图谱详情点击「查看完整联系方式」，在 Salestools 页面点击「显示联系方式」。 | 读 [M2 网页查看与额度](references/library-search.md#m2-网页查看与额度)。 |

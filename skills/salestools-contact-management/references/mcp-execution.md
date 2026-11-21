@@ -4,7 +4,9 @@
 
 ## 执行校验
 
-每次实际调用前执行 `request`，收到原始 MCP 返回后执行 `result`，交回企业研究前执行 `handoff`。命令、依赖和输入格式见[校验脚本输入格式](validator-input.md)。
+纯只读工具按在线声明直接调用，无需逐次运行 Python。包括 `search_contacts`、`get_contact`、`ask_contacts`、`get_contact_import`，以及企业画像、已有成果、草稿、版本、证据和任务状态读取。只用本轮真实结果或已回读核验的标识与游标。逐次检查错误、状态、来源范围和下一页标识。
+
+`discover_contacts`（含账户确认、可能同步图谱或写快照的各来源和续页）、`get_company_key_people`、`ask_company`、任务创建或取消、导入、档案及关系变更，均在调用前执行 `request`，返回后执行 `result`。联系人交回企业研究前执行 `handoff`。联系人操作使用联系人管理的 `scripts/validate_mcp_call.py`，企业研究使用企业研究的同名入口。校验包保留必要的真实调用和原始返回，包括前面的直接读取。命令与输入见[校验脚本输入格式](validator-input.md)。
 
 `ok:true` 不等于任务完成，必须同时读 `decision`：
 

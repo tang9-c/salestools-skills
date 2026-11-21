@@ -7,7 +7,7 @@ description: 通过 Salestools MCP 研究中国企业：基础画像、持续研
 
 以当前连接实际提供的 MCP 工具和返回结果为准。只编排调用、解释证据，不自行补算产品等级。普通了解先给基础画像，七产品机会判断由持续研究产出。
 
-执行时遵循[实际 MCP 调用与结果核对](../salestools-contact-management/references/mcp-execution.md)，用本 Skill 的[执行校验入口](scripts/validate_mcp_call.py)做 request/result 检查；两个 Skill 保持同级安装，共享实现和依赖。调用创建类工具前按[任务、标识与副作用](references/tasks-and-ids.md)核对副作用、operation_id 和用户限制。需要联系人资料时，按[企业与联系人衔接](../salestools-contact-management/references/company-context.md)传递已核验主体、所需产品/岗位与访问限制；联系人结果通过 handoff 检查后才作为已确认路径纳入研究，候选和缺证据的单列为待核实。
+按[实际 MCP 调用与结果核对](../salestools-contact-management/references/mcp-execution.md)执行。企业画像、已有研究、拜访或比较结果、证据分页与任务轮询，按在线声明直接调用并核对返回的主体、版本、游标和状态。创建或取消任务、关键人发现与可能补查外部资料的 `ask_company` 用本 Skill 的[执行校验入口](scripts/validate_mcp_call.py)做 request/result。按[任务、标识与副作用](references/tasks-and-ids.md)核对 operation_id 和用户限制。按[企业与联系人衔接](../salestools-contact-management/references/company-context.md)传递主体与访问限制，联系人结果通过 handoff 后才作为已确认路径纳入研究。
 
 ## 按意图选择工具
 

@@ -7,7 +7,7 @@ description: 在 Salestools 联系人库、M2、Zoho CRM 和公开网页中查�
 
 先识别用户要查共享库、M2、CRM 或公开网页，或要导入、维护资料。以当前 MCP 工具声明为准，只使用实际可用的工具、参数和返回记录。
 
-调用前后遵循[实际 MCP 调用与结果核对](references/mcp-execution.md)，执行[参数/结果校验脚本](scripts/validate_mcp_call.py)的 request/result 阶段，输入格式见[校验脚本输入格式](references/validator-input.md)；交回企业研究前执行 handoff。脚本使用本次在线元数据和真实调用记录，未通过就修正或报告缺口，不凭 ok:true 宣称成果已生成。来自企业研究的找人任务先读[企业与联系人衔接](references/company-context.md)，将已核实事实、待核实线索和未完成范围分别返回研究。
+按[实际 MCP 调用与结果核对](references/mcp-execution.md)执行。共享图谱的搜索、档案、关系与分页直接调用并核对真实返回。账户确认、可能同步图谱的发现、导入和档案变更使用本 Skill 的[校验器](scripts/validate_mcp_call.py)执行 request/result，交回企业研究前执行 handoff。来自企业研究的找人任务先读[企业与联系人衔接](references/company-context.md)。
 
 ## 按意图选择工具与参考
 

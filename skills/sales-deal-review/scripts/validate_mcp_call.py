@@ -20,6 +20,7 @@ TOOLS = {
     'get_deal_review_evidence', 'open_deal_review_upload', 'upload_deal_attachment',
     'prepare_deal_review_writeback',
 }
+WRITEBACK_FIELDS = {'Stage', 'Amount', 'Probability', 'Closing_Date'}
 AUTH_ERROR_DECISIONS = {
     'ZOHO_PERSONAL_AUTH_REQUIRED': 'reconnect_zoho',
     'ZOHO_AUTH_UNAVAILABLE': 'retry_later',
@@ -199,6 +200,11 @@ def request(packet):
         if mode == 'new':
             require(set(args) <= {'mode','reviewId','changes','noteClaims','managerNote'}, 'UNEXPECTED_PREVIEW_INPUT')
             require(bool(recorded), 'REVIEW_NOT_FROM_HISTORY')
+            changed_fields = {change['field'] for change in args.get('changes', [])}
+            require(changed_fields <= WRITEBACK_FIELDS, 'FIELD_NOT_SUPPORTED_FOR_WRITEBACK')
+            if changed_fields:
+                visible = recorded[-1]['deal'].get('visibleFields')
+                require(isinstance(visible, list) and changed_fields.issubset(visible), 'FIELD_NOT_VISIBLE_IN_DEAL')
         else:
             require(mode == 'retry_note' and set(args) <= {'mode','operationId','noteClaims','managerNote'}, 'UNEXPECTED_PREVIEW_INPUT')
             receipt = confirmations.get('writebackReceipt', {})

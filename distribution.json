@@ -1,5 +1,5 @@
 {
-  "source_commit": "56259991a07222972505e464c484accce7840dbb",
+  "source_commit": "21a8e959f6a962e35076cc13f05e833ef874613d",
   "skills": [
     "salestools-customer-assessment",
     "salestools-contact-management",
@@ -23,9 +23,9 @@
     "skills/sales-deal-review/references/file-evidence.md": "38c50be4152e8317e2855100b562810fcd0506d6df54794133348d673b3e9e6f",
     "skills/sales-deal-review/references/frameworks.md": "ab272a41066ad84f02441c2b0361bf7d5cf86c5771f4c1d6cde58803e300ba6b",
     "skills/sales-deal-review/references/quality-check.md": "f2a84364c99cc9f5965a1c83c56e9be1d0c0d7053d9e1de948f2bc87ead5266c",
-    "skills/sales-deal-review/references/writeback.md": "f113e522fd4a09fd817f1752b12b280e92de965791ec3074cc7182912aefe38f",
+    "skills/sales-deal-review/references/writeback.md": "705c4921611cac7553da7cdbb9cacffbc393877559933f91cb415d4d4606c9f2",
     "skills/sales-deal-review/scripts/check_report.py": "6313910f7efb542cedaff42bd6b6284d04bdcaa56c85801e9bb98e76dcaf79bd",
-    "skills/sales-deal-review/scripts/validate_mcp_call.py": "ae3680b45c2e979287818887dfa57067ca3b27d594a255e8c4dbfc38a5cc87b6",
+    "skills/sales-deal-review/scripts/validate_mcp_call.py": "6930338df02aa27116b4cbd2e7bb46cd75e626b49931c92196d7cb71bc24502d",
     "skills/salestools-contact-management/SKILL.md": "2460906a4221e4806423e275cc0fcc12a7ad5559bfea617ab3f4a25d725b6973",
     "skills/salestools-contact-management/references/company-context.md": "18312e2b1ab9001027dca2e25d215e370d67f1a6a0fa9dcd3e049d1116e67806",
     "skills/salestools-contact-management/references/contact-limits.md": "25b4efc27333346466a8ac2ecddd185327acf34b1f7bdcbfabae23915f1d53a0",
